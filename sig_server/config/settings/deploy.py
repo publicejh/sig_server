@@ -12,3 +12,5 @@ DATABASES = config_secret_deploy['django']['databases']
 
 CORS_ORIGIN_WHITELIST = [
 ]
+
+AUTH_SERVER_TOKEN_VALIDATION_URL = config_secret_deploy['django']['auth_server_token_validation_url']

@@ -11,3 +11,5 @@ WSGI_APPLICATION = 'config.wsgi.debug.application'
 DATABASES = config_secret_debug['django']['databases']
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_SERVER_TOKEN_VALIDATION_URL = config_secret_debug['django']['auth_server_token_validation_url']
