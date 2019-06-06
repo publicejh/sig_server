@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'sigs',
+    'posts',
 ]
 
 # CorsMiddleware should be placed as high as possible, especially before any middleware that can generate responses

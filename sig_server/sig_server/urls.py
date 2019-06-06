@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sig-management/doc/', get_swagger_view(title='Rest API Document')),
     path('sig-management/v1/sigs/', include('sigs.api.urls')),
+    path('sig-management/v1/posts/', include('posts.api.urls')),
 ]
