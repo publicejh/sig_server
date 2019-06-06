@@ -3,7 +3,7 @@ from django.db import models
 
 class Sig(models.Model):
     name = models.CharField(max_length=45)
-    cover_img_path = models.CharField(max_length=200)
+    cover_img_path = models.CharField(max_length=200, null=True, blank=True)
     # members = models.ManyToManyField(settings.AUTH_USER_MODEL, through='SigParticipate')
 
     def __str__(self):

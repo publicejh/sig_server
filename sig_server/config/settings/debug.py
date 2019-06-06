@@ -13,3 +13,5 @@ DATABASES = config_secret_debug['django']['databases']
 CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_SERVER_TOKEN_VALIDATION_URL = config_secret_debug['django']['auth_server_token_validation_url']
+AUTH_SERVER_API_KEY = config_secret_debug['django']['auth_server_api_key']
+AUTH_SERVER_GET_USER_API_URL = config_secret_debug['django']['auth_server_get_user_api_url']
