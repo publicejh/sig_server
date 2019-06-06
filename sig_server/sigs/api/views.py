@@ -1,7 +1,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
-from sigs.models import Sig, SigParticipate
-from .serializers import SigSerializer, SigParticipateSerializer, SigParticipateDetailSerializer
+from sigs.models import Sig, SigParticipate, SigInvitationToken
+from .serializers import SigSerializer, SigParticipateSerializer, SigParticipateDetailSerializer,\
+    SigInvitationTokenSerializer
 
 
 class SigListCreateView(generics.ListCreateAPIView):
@@ -34,8 +35,7 @@ class SigParticipateCreateView(generics.CreateAPIView):
     serializer_class = SigParticipateSerializer
 
 
-class SigParticipateListView(generics.ListAPIView):
-    # queryset = BandParticipate.objects.all()
+class SigParticipateListCreateView(generics.ListCreateAPIView):
     serializer_class = SigParticipateDetailSerializer
     lookup_field = 'sig_id'
 
@@ -43,3 +43,19 @@ class SigParticipateListView(generics.ListAPIView):
         sig_id = self.kwargs.get(self.lookup_field, None)
         queryset = SigParticipate.objects.filter(sig_id=sig_id)
         return queryset.order_by('-is_sig_leader')
+
+
+class SigInvitationTokenCreateView(generics.CreateAPIView):
+    queryset = SigInvitationToken
+    serializer_class = SigInvitationTokenSerializer
+
+
+class SigInvitationTokenRetrieveView(generics.RetrieveAPIView):
+    queryset = SigInvitationToken.objects.all()
+    serializer_class = SigInvitationTokenSerializer
+    lookup_field = 'token'
+
+    def get_queryset(self):
+        queryset = SigInvitationToken.objects.all()
+        token = self.kwargs.get(self.lookup_field, None)
+        return queryset.filter(token=token)

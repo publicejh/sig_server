@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from sigs.models import Sig, SigParticipate
+from sigs.models import Sig, SigParticipate, SigInvitationToken
 from sigs.views import get_user_detail
 
 
@@ -30,5 +30,16 @@ class SigParticipateDetailSerializer(serializers.ModelSerializer):
         return user_detail['username']
 
     class Meta:
-        fields = ('is_sig_leader', 'sig', 'username', )
+        fields = ('user_id', 'is_sig_leader', 'sig', 'username', )
         model = SigParticipate
+
+
+class SigInvitationTokenSerializer(serializers.ModelSerializer):
+    sig_name = serializers.SerializerMethodField()
+
+    def get_sig_name(self, obj):
+        return obj.sig.name
+
+    class Meta:
+        fields = ('id', 'token', 'sig', 'sig_name', )
+        model = SigInvitationToken
